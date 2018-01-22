@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圆形容器内随机撒点</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #3c3c3c;
+        }
+
+        #parent_Ele {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+
+        #parent_Ele::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            margin-top: -2px;
+            margin-left: -2px;
+        }
+
+        .children_Ele {
+            position: absolute;
+        }
+
+        .children_Ele::after {
+            border-radius: 50%;
+            content: "";
+            border: 1px solid #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <script src="ScatteredPoints.js"></script>
+</head>
+
+<body>
+    <div id="parent_Ele"></div>
+    <script type="text/javascript">
+        var $spoints = new $scatteredPoints({
+            ParentID: "parent_Ele",
+            radius_children: 20,
+            className_children: "children_Ele",
+            tagName_children: "div"
+        });
+        $spoints.init();
+        console.log($spoints.nums_children);//子容器总数
+        console.log($spoints.rows_children);//子容器总圈数
+    </script>
+</body>
+
+</html>
