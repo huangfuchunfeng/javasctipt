@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>圆形容器内随机撒点不重叠</title>
+    <title>圆形容器内随机撒点不重叠，从圆心开始</title>
     <style>
         * {
             margin: 0;
@@ -57,7 +57,7 @@
             transform: translate(-50%, -50%);
         }
     </style>
-    <script src="ScatteredPoints.js"></script>
+    <script src="ScatteredPoints2.js"></script>
 </head>
 
 <body>
@@ -70,8 +70,8 @@
             tagName_children: "div"
         });
         $spoints.init();
-        console.log($spoints.nums_children);//子容器总数
-        console.log($spoints.rows_children);//子容器总圈数
+        console.log($spoints.nums_children); //子容器总数
+        console.log($spoints.rows_children); //子容器总圈数
     </script>
 </body>
 

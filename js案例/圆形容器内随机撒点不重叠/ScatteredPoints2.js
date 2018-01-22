@@ -41,7 +41,7 @@
          * 创建围绕原点的子容器坐标
          */
         createChildrenRow: function () {
-            for (var i = 0; i < this.rows_children; i++) {
+            for (var i = 0; i < Math.ceil(this.radius_Parent / this.radius_children / 2); i++) {
                 this.createChildren(i);
             }
         },
@@ -50,9 +50,12 @@
          */
         createChildren: function (index) {
             var base = [];
-            var r = this.radius_Parent - this.radius_children * (2 * index + 1); //半径
+            var r = this.radius_children * 2 * index; //半径
             var c = this.radius_children * 2; //边长
+
             var n = this.calcN(r, c); //当前半径下总边数
+
+
             for (var i = 0; i < 360; i += n) {
                 var x = Math.floor(Math.cos(Math.PI / 180 * i) * r);
                 var y = Math.floor(Math.sin(Math.PI / 180 * i) * r);
