@@ -7,11 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script>
-
         var promisifiedOldGUM = function (constraints) {
             var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
             if (!getUserMedia) {
-             
                 return Promise.reject(new Error('未能调用到媒体'));
             }
             return new Promise(function (resolve, reject) {
@@ -39,7 +37,6 @@
             };
             getUserMedia(constraints)
                 .then(function (stream) {
-                 alert(stream);
                     videos(stream);
                 })
                 .catch(function (error) {});
@@ -55,14 +52,12 @@
             })
         }
         function loaded() {
-               alert('1');
             userMedia();
-               alert('2');
         }
     </script>
 </head>
 
-<body onload="loaded">
+<body onload="loaded()">
     <video class="video"></video>
     <video class="video"></video>
     <video class="video"></video>
