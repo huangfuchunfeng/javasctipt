@@ -31,8 +31,9 @@
             var constraints = {
                 audio: false,
                 video: {
-                    width: 300,
-                    height: 200
+                    'optional': [{  
+                            'sourceId': exArray[1] 
+                        }]
                 }
             };
             getUserMedia(constraints)
