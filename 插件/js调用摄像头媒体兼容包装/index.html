@@ -31,9 +31,7 @@
             var constraints = {
                 audio: false,
                 video: {
-                    'optional': [{  
-                            'sourceId': exArray[1] 
-                        }]
+                    facingMode: "user" 
                 }
             };
             getUserMedia(constraints)
