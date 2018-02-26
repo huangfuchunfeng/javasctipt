@@ -39,7 +39,7 @@
                 .then(function (stream) {
                     videos(stream);
                 })
-                .catch(function (error) {});
+                .catch(function (error) {alert(error)});
         }
         var videos = function (stream) {
             var videoList = document.querySelectorAll('.video');
