@@ -10,6 +10,7 @@
         var promisifiedOldGUM = function (constraints) {
             var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
             if (!getUserMedia) {
+                alert('1');
                 return Promise.reject(new Error('未能调用到媒体'));
             }
             return new Promise(function (resolve, reject) {
