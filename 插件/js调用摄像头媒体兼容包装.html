@@ -39,6 +39,7 @@
             };
             getUserMedia(constraints)
                 .then(function (stream) {
+                 alert(stream);
                     videos(stream);
                 })
                 .catch(function (error) {});
