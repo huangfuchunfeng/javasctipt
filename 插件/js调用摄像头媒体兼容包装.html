@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var promisifiedOldGUM = function (constraints) {
+            var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
+            if (!getUserMedia) {
+                return Promise.reject(new Error('未能调用到媒体'));
+            }
+            return new Promise(function (resolve, reject) {
+                getUserMedia.call(navigator, constraints, resolve, reject);
+            });
+
+        }
+        var getUserMedia = function (constraints) {
+            if (navigator.mediaDevices === undefined) {
+                navigator.mediaDevices = {};
+            }
+            if (navigator.mediaDevices.getUserMedia === undefined) {
+                navigator.mediaDevices.getUserMedia = promisifiedOldGUM;
+            }
+            return navigator.mediaDevices.getUserMedia(constraints);
+        }
+
+        var userMedia = function () {
+            var constraints = {
+                audio: false,
+                video: {
+                    width: 300,
+                    height: 200
+                }
+            };
+            getUserMedia(constraints)
+                .then(function (stream) {
+                    videos(stream);
+                })
+                .catch(function (error) {});
+        }
+        var videos = function (stream) {
+            var videoList = document.querySelectorAll('.video');
+            var videoArray = Array.prototype.slice.call(videoList);
+            videoArray.forEach(function (video) {
+                video.srcObject = stream;
+                video.onloadedmetadata = function (e) {
+                    video.play()
+                };
+            })
+        }
+        function loaded() {
+            userMedia();
+        }
+    </script>
+</head>
+
+<body onload="loaded()">
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+    <video class="video"></video>
+</body>
+
+</html>
